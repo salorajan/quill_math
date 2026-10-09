@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Math Equations - Accessible Mathematics for Everyone</title>
+  <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --accent: #0284c7;
+      --accent-hover: #0369a1;
+      --border-color: #e2e8f0;
+      --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --badge-bg: #e0f2fe;
+      --badge-text: #0369a1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --bg-card: #1e293b;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-hover: #7dd3fc;
+        --border-color: #334155;
+        --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        --card-hover-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.5);
+        --badge-bg: #075985;
+        --badge-text: #e0f2fe;
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.68;
+      color: var(--text-main);
+      background-color: var(--bg-primary);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 48px 24px 80px 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .logo-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--badge-text);
+      background-color: var(--badge-bg);
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin: 0 0 16px 0;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .mission-section {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 48px;
+    }
+
+    .mission-section h2 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      color: var(--text-main);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .feature-item {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .feature-item h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.15rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-item p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 40px 0 24px 0;
+      color: var(--text-main);
+      text-align: center;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .course-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .course-card:hover, .course-card:focus {
+      transform: translateY(-4px);
+      box-shadow: var(--card-hover-shadow);
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    .course-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .course-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background-color: var(--badge-bg);
+      color: var(--badge-text);
+    }
+
+    .course-card h3 {
+      font-size: 1.4rem;
+      margin: 0 0 12px 0;
+      color: var(--text-main);
+    }
+
+    .course-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin: 0 0 20px 0;
+      flex-grow: 1;
+    }
+
+    .course-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .nav-guide, .acknowledgments-section {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 48px;
+    }
+
+    .nav-guide h2, .acknowledgments-section h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: var(--text-main);
+    }
+
+    .acknowledgments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .ack-card {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .ack-card h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.15rem;
+      color: var(--accent);
+    }
+
+    .ack-card p {
+      margin: 0;
+      font-size: 0.93rem;
+      color: var(--text-muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+    }
+
+    kbd {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-family: monospace;
+      font-size: 0.88em;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="logo-badge">Quill Math Accessibility Initiative</span>
+      <h1>Learn Math Equations</h1>
+      <p class="subtitle">An accessible, screen-reader-first mathematics library dedicated to empowering blind, visually impaired, and sighted learners with 150 foundational equations.</p>
+    </header>
+
+    <main>
+      <section class="mission-section" aria-labelledby="mission-heading">
+        <h2 id="mission-heading">Our Mission & Accessibility Promise</h2>
+        <p>
+          Mathematics is the universal language of science, technology, and engineering, yet standard digital equations often present severe barriers for visually impaired students. Our mission is to make mathematical knowledge universally accessible, intuitive, and navigable for everyone.
+        </p>
+        
+        <div class="features-grid">
+          <div class="feature-item">
+            <h3><span>♿</span> Screen Reader First</h3>
+            <p>Full native support for NVDA, JAWS, VoiceOver, and Orca using clean, un-clipped MathML 3.0 standards to prevent duplicate reading and speech misinterpretations.</p>
+          </div>
+          <div class="feature-item">
+            <h3><span>🎯</span> In-Place Navigation</h3>
+            <p>Explore complex fractions, exponents, and nested expressions level by level with single-key keyboard shortcuts without losing your place in the document.</p>
+          </div>
+          <div class="feature-item">
+            <h3><span>💡</span> Plain English Intuition</h3>
+            <p>Every single equation includes 3 to 4 lines of clear, concise explanation describing what the formula means, what variables represent, and where it is applied.</p>
+          </div>
+          <div class="feature-item">
+            <h3><span>⚡</span> Open Source & Free</h3>
+            <p>Freely available for thousands of students, educators, and assistive technology specialists worldwide.</p>
+          </div>
+        </div>
+      </section>
+
+      <h2 class="section-title">Explore the Equation Collections</h2>
+
+      <div class="courses-grid">
+        <a href="algebra.html" class="course-card">
+          <div>
+            <div class="course-header">
+              <span class="course-tag">50 Equations</span>
+              <span aria-hidden="true">📐</span>
+            </div>
+            <h3>Algebra</h3>
+            <p>From linear systems and quadratic equations to polynomials, logarithms, complex numbers, matrices, and arithmetic/geometric series.</p>
+          </div>
+          <div class="course-link">
+            Explore Algebra Collection &rarr;
+          </div>
+        </a>
+
+        <a href="calculus1.html" class="course-card">
+          <div>
+            <div class="course-header">
+              <span class="course-tag">50 Equations</span>
+              <span aria-hidden="true">📈</span>
+            </div>
+            <h3>Calculus 1</h3>
+            <p>Limits, continuity, single-variable differentiation rules, transcendental derivatives, Mean Value Theorems, curve sketching, and Riemann sums.</p>
+          </div>
+          <div class="course-link">
+            Explore Calculus 1 Collection &rarr;
+          </div>
+        </a>
+
+        <a href="calculus2.html" class="course-card">
+          <div>
+            <div class="course-header">
+              <span class="course-tag">50 Equations</span>
+              <span aria-hidden="true">∫</span>
+            </div>
+            <h3>Calculus 2</h3>
+            <p>Advanced integration techniques, solids of revolution, arc length, differential equations, polar/parametric coordinates, and infinite Taylor series.</p>
+          </div>
+          <div class="course-link">
+            Explore Calculus 2 Collection &rarr;
+          </div>
+        </a>
+      </div>
+
+      <section class="nav-guide" aria-labelledby="guide-heading">
+        <h2 id="guide-heading">Interactive Sub-Expression Navigation Guide</h2>
+        <p>When you focus on any equation card in the collections, you can interactively explore its mathematical structure using your keyboard:</p>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Keyboard Key</th>
+              <th scope="col">Action</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><kbd>Enter</kbd> / <kbd>Space</kbd> / <kbd>↓</kbd></td>
+              <td>Open Navigator / Drill Down</td>
+              <td>Enters the equation's internal structure or drills down into a focused sub-term.</td>
+            </tr>
+            <tr>
+              <td><kbd>→</kbd> / <kbd>←</kbd></td>
+              <td>Next / Previous Term</td>
+              <td>Walks horizontally across sibling terms and operators at the current depth level.</td>
+            </tr>
+            <tr>
+              <td><kbd>↑</kbd> / <kbd>Esc</kbd></td>
+              <td>Go Up</td>
+              <td>Returns to the parent expression enclosing the current term.</td>
+            </tr>
+            <tr>
+              <td><kbd>Backspace</kbd> / <kbd>Q</kbd> / <kbd>X</kbd></td>
+              <td>Exit Navigation</td>
+              <td>Closes the navigator drawer and returns focus directly to the main equation card.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="acknowledgments-section" aria-labelledby="ack-heading">
+        <h2 id="ack-heading">Special Acknowledgments & Gratitude</h2>
+        <p>This project stands on the shoulders of visionary open-source accessibility communities and leaders whose ground-breaking work makes inclusive STEM education possible:</p>
+        <div class="acknowledgments-grid">
+          <div class="ack-card">
+            <h3>Community Access & Quill</h3>
+            <p>Our sincere gratitude to the <strong>Community Access</strong> and <strong>Quill</strong> open-source ecosystem for championing accessible digital learning environments, modular architectures, and assistive tools that empower diverse learners everywhere.</p>
+          </div>
+          <div class="ack-card">
+            <h3>DAISY Consortium & MathCAT</h3>
+            <p>Deep appreciation to the <strong>DAISY Consortium</strong> and the <strong>MathCAT</strong> project (led by Neil Soiffer) for providing the foundational speech synthesis, Nemeth/UEB Braille generation, and structural navigation engine that powers accessible mathematics worldwide.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Built with ❤️ for accessible STEM education &bull; Powered by <a href="https://github.com/salorajan/quill_math" style="color: var(--accent);">quill_math</a>, <code>accessible_math_nav</code>, and MathCAT</p>
+    </footer>
+  </div>
+</body>
+</html>
