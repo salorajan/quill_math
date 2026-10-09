@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling>=1.20.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "quill-math"
+version = "0.1.0"
+description = "Accessible MathML tree navigation, LaTeX translation, and EPUB 3.4 publishing toolkit"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [
+    { name = "Salo Rajan" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Text Processing :: Markup :: XML",
+    "Topic :: Text Processing :: Markup :: LaTeX",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "latex2mathml>=3.80.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-mock>=3.14.0",
+]
+security = [
+    "defusedxml>=0.7.1",
+]
+
+[project.scripts]
+quill-math = "quill_math.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
